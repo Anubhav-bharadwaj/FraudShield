@@ -109,8 +109,10 @@ export default function FraudEnginePage() {
             </div>
 
             <div className="flex items-center gap-2">
-              <label className="text-xs font-mono text-[#AAA395]">SELECT TX:</label>
+              <label htmlFor="select-tx-sandbox" className="text-xs font-mono text-[#AAA395]">SELECT TX:</label>
               <select
+                id="select-tx-sandbox"
+                aria-label="Select transaction to evaluate in sandbox"
                 value={selectedTxId}
                 onChange={e => setSelectedTxId(e.target.value)}
                 className="bg-[#171715] border border-[#403B32] rounded-lg px-3 py-1.5 text-xs text-[#D8C5A3] font-mono focus:outline-none focus:border-[#D8C5A3]"

@@ -241,14 +241,15 @@ export default function AnalyticsPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">
+              <caption className="sr-only">Top high-risk accounts leaderboard</caption>
               <thead>
                 <tr className="bg-[#171715] border-b border-[#403B32] text-[#AAA395] font-mono uppercase text-[10px]">
-                  <th className="py-2.5 px-4">Account ID & Holder</th>
-                  <th className="py-2.5 px-4">Entity Type</th>
-                  <th className="py-2.5 px-4 text-right">Monitored Volume</th>
-                  <th className="py-2.5 px-4 text-center">Flagged Events</th>
-                  <th className="py-2.5 px-4 text-center">Peak Risk Score</th>
-                  <th className="py-2.5 px-4">Status & Action</th>
+                  <th scope="col" className="py-2.5 px-4">Account ID & Holder</th>
+                  <th scope="col" className="py-2.5 px-4">Entity Type</th>
+                  <th scope="col" className="py-2.5 px-4 text-right">Monitored Volume</th>
+                  <th scope="col" className="py-2.5 px-4 text-center">Flagged Events</th>
+                  <th scope="col" className="py-2.5 px-4 text-center">Peak Risk Score</th>
+                  <th scope="col" className="py-2.5 px-4">Status & Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#403B32]/60">

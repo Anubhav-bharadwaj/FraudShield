@@ -58,24 +58,31 @@ export const TransactionDetailModal: React.FC<TransactionDetailModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-detail-id"
+      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+    >
       <div className="bg-[#211F1B] border border-[#403B32] rounded-xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Modal Header */}
         <div className="px-6 py-4 border-b border-[#403B32] flex items-center justify-between bg-[#171715]">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-sm font-semibold text-[#D8C5A3] px-2 py-0.5 rounded bg-[#2B2822] border border-[#403B32]">
+            <span id="modal-detail-id" className="font-mono text-sm font-semibold text-[#D8C5A3] px-2 py-0.5 rounded bg-[#2B2822] border border-[#403B32]">
               {transaction.id}
             </span>
             <span className="text-xs text-[#AAA395] flex items-center gap-1.5 font-mono">
-              <Clock className="w-3.5 h-3.5" />
+              <Clock className="w-3.5 h-3.5" aria-hidden="true" />
               {new Date(transaction.timestamp).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST
             </span>
           </div>
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Close transaction details modal"
             className="p-1 rounded-lg text-[#AAA395] hover:text-[#F1EBDD] hover:bg-[#2B2822] transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 

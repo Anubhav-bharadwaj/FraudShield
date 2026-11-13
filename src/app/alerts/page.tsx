@@ -65,8 +65,10 @@ export default function AlertsPage() {
           <div className="flex flex-wrap items-center gap-3 text-xs">
             {/* Status Filter */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[#AAA395] font-mono text-[11px]">STATUS:</span>
+              <label htmlFor="filter-alert-status" className="text-[#AAA395] font-mono text-[11px]">STATUS:</label>
               <select
+                id="filter-alert-status"
+                aria-label="Filter alerts by status"
                 value={statusFilter}
                 onChange={e => setStatusFilter(e.target.value)}
                 className="bg-[#171715] border border-[#403B32] rounded px-2.5 py-1 text-xs text-[#F1EBDD] focus:outline-none focus:border-[#D8C5A3]"
@@ -82,8 +84,10 @@ export default function AlertsPage() {
 
             {/* Severity Filter */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[#AAA395] font-mono text-[11px]">SEVERITY:</span>
+              <label htmlFor="filter-alert-severity" className="text-[#AAA395] font-mono text-[11px]">SEVERITY:</label>
               <select
+                id="filter-alert-severity"
+                aria-label="Filter alerts by severity"
                 value={severityFilter}
                 onChange={e => setSeverityFilter(e.target.value)}
                 className="bg-[#171715] border border-[#403B32] rounded px-2.5 py-1 text-xs text-[#F1EBDD] focus:outline-none focus:border-[#D8C5A3]"
@@ -189,8 +193,9 @@ export default function AlertsPage() {
                 {/* Inline Resolve Note Box */}
                 {resolvingAlertId === alert.id && (
                   <div className="my-2 p-3 rounded-lg bg-[#171715] border border-[#403B32] space-y-2">
-                    <label className="block text-xs font-mono text-[#AAA395]">Add Resolution Finding / Disposition:</label>
+                    <label htmlFor="resolution-note-input" className="block text-xs font-mono text-[#AAA395]">Add Resolution Finding / Disposition:</label>
                     <input
+                      id="resolution-note-input"
                       type="text"
                       value={resolutionNote}
                       onChange={e => setResolutionNote(e.target.value)}

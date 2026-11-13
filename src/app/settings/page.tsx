@@ -144,10 +144,11 @@ export default function SettingsPage() {
 
           <form onSubmit={handleSaveConfig} className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
             <div>
-              <label className="block text-xs font-mono text-[#AAA395] mb-1">
+              <label htmlFor="setting-structuring-threshold" className="block text-xs font-mono text-[#AAA395] mb-1">
                 Illustrative Structuring Limit (INR ₹)
               </label>
               <input
+                id="setting-structuring-threshold"
                 type="number"
                 value={structuringThreshold}
                 onChange={e => setStructuringThreshold(e.target.value)}
@@ -159,10 +160,11 @@ export default function SettingsPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-[#AAA395] mb-1">
+              <label htmlFor="setting-velocity-window" className="block text-xs font-mono text-[#AAA395] mb-1">
                 Velocity Burst Window (Minutes)
               </label>
               <input
+                id="setting-velocity-window"
                 type="number"
                 value={velocityWindowMin}
                 onChange={e => setVelocityWindowMin(e.target.value)}
@@ -174,10 +176,11 @@ export default function SettingsPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-mono text-[#AAA395] mb-1">
+              <label htmlFor="setting-multiplier" className="block text-xs font-mono text-[#AAA395] mb-1">
                 Baseline Outlier Multiplier
               </label>
               <input
+                id="setting-multiplier"
                 type="number"
                 step="0.5"
                 value={multiplier}

@@ -137,8 +137,10 @@ export default function InvestigationsPage() {
                 {/* Status Switcher & Print */}
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-mono text-[#AAA395]">STATE:</span>
+                    <label htmlFor="case-state-select" className="text-xs font-mono text-[#AAA395]">STATE:</label>
                     <select
+                      id="case-state-select"
+                      aria-label="Update case status"
                       value={activeCase.status}
                       onChange={e => handleStatusChange(e.target.value as CaseStatus)}
                       className="bg-[#171715] border border-[#403B32] rounded-lg px-3 py-1.5 text-xs text-[#F1EBDD] font-mono font-semibold focus:outline-none focus:border-[#D8C5A3]"
@@ -248,6 +250,7 @@ export default function InvestigationsPage() {
                   <div className="flex gap-2">
                     <input
                       type="text"
+                      aria-label="Add case note"
                       value={newNoteBody}
                       onChange={e => setNewNoteBody(e.target.value)}
                       placeholder="Add investigation annotation, external callback finding, or SAR filing notes..."

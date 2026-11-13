@@ -142,7 +142,9 @@ export default function TransactionsPage() {
             <div className="relative flex-1 w-full">
               <Search className="w-4 h-4 text-[#AAA395] absolute left-3 top-1/2 -translate-y-1/2" />
               <input
+                id="search-transactions"
                 type="text"
+                aria-label="Search transactions by ID, sender, receiver, account number, or tag"
                 value={searchQuery}
                 onChange={e => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                 placeholder="Search by Transaction ID, sender, receiver, account number, or tag..."
@@ -175,8 +177,10 @@ export default function TransactionsPage() {
           <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-[#403B32]/60 text-xs">
             {/* Risk filter */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[#AAA395] font-mono text-[11px]">RISK:</span>
+              <label htmlFor="filter-risk" className="text-[#AAA395] font-mono text-[11px]">RISK:</label>
               <select
+                id="filter-risk"
+                aria-label="Filter transactions by risk level"
                 value={selectedRisk}
                 onChange={e => { setSelectedRisk(e.target.value); setCurrentPage(1); }}
                 className="bg-[#171715] border border-[#403B32] rounded px-2 py-1 text-xs text-[#F1EBDD] focus:outline-none focus:border-[#D8C5A3]"
@@ -192,8 +196,10 @@ export default function TransactionsPage() {
 
             {/* Method filter */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[#AAA395] font-mono text-[11px]">RAILS:</span>
+              <label htmlFor="filter-method" className="text-[#AAA395] font-mono text-[11px]">RAILS:</label>
               <select
+                id="filter-method"
+                aria-label="Filter transactions by payment method"
                 value={selectedMethod}
                 onChange={e => { setSelectedMethod(e.target.value); setCurrentPage(1); }}
                 className="bg-[#171715] border border-[#403B32] rounded px-2 py-1 text-xs text-[#F1EBDD] focus:outline-none focus:border-[#D8C5A3]"
@@ -209,8 +215,10 @@ export default function TransactionsPage() {
 
             {/* Status filter */}
             <div className="flex items-center gap-1.5">
-              <span className="text-[#AAA395] font-mono text-[11px]">STATUS:</span>
+              <label htmlFor="filter-status" className="text-[#AAA395] font-mono text-[11px]">STATUS:</label>
               <select
+                id="filter-status"
+                aria-label="Filter transactions by execution status"
                 value={selectedStatus}
                 onChange={e => { setSelectedStatus(e.target.value); setCurrentPage(1); }}
                 className="bg-[#171715] border border-[#403B32] rounded px-2 py-1 text-xs text-[#F1EBDD] focus:outline-none focus:border-[#D8C5A3]"
@@ -223,8 +231,10 @@ export default function TransactionsPage() {
 
             {/* Sort selection */}
             <div className="flex items-center gap-1.5 ml-auto">
-              <span className="text-[#AAA395] font-mono text-[11px]">SORT BY:</span>
+              <label htmlFor="sort-by" className="text-[#AAA395] font-mono text-[11px]">SORT BY:</label>
               <select
+                id="sort-by"
+                aria-label="Sort transactions by field"
                 value={sortBy}
                 onChange={e => setSortBy(e.target.value as any)}
                 className="bg-[#171715] border border-[#403B32] rounded px-2 py-1 text-xs text-[#F1EBDD] focus:outline-none focus:border-[#D8C5A3]"
@@ -234,10 +244,12 @@ export default function TransactionsPage() {
                 <option value="riskScore">Risk Score</option>
               </select>
               <button
+                type="button"
+                aria-label="Toggle sort direction"
                 onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')}
                 className="p-1 rounded bg-[#171715] border border-[#403B32] text-[#AAA395] hover:text-[#F1EBDD]"
               >
-                <ArrowUpDown className="w-3.5 h-3.5" />
+                <ArrowUpDown className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -247,16 +259,17 @@ export default function TransactionsPage() {
         <div className="bg-[#211F1B] border border-[#403B32] rounded-xl overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs border-collapse">
+              <caption className="sr-only">Monitored transactions ledger</caption>
               <thead>
                 <tr className="bg-[#171715] border-b border-[#403B32] text-[#AAA395] font-mono uppercase text-[10px] tracking-wider">
-                  <th className="py-3 px-4">Tx ID & Timestamp</th>
-                  <th className="py-3 px-4">Origin / Sender</th>
-                  <th className="py-3 px-4">Beneficiary / Receiver</th>
-                  <th className="py-3 px-4 text-right">Amount (INR)</th>
-                  <th className="py-3 px-4">Method</th>
-                  <th className="py-3 px-4">Status</th>
-                  <th className="py-3 px-4">Risk Evaluation</th>
-                  <th className="py-3 px-4 text-center">Actions</th>
+                  <th scope="col" className="py-3 px-4">Tx ID & Timestamp</th>
+                  <th scope="col" className="py-3 px-4">Origin / Sender</th>
+                  <th scope="col" className="py-3 px-4">Beneficiary / Receiver</th>
+                  <th scope="col" className="py-3 px-4 text-right">Amount (INR)</th>
+                  <th scope="col" className="py-3 px-4">Method</th>
+                  <th scope="col" className="py-3 px-4">Status</th>
+                  <th scope="col" className="py-3 px-4">Risk Evaluation</th>
+                  <th scope="col" className="py-3 px-4 text-center">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#403B32]/60">
@@ -329,18 +342,22 @@ export default function TransactionsPage() {
                       <td className="py-3 px-4 text-center">
                         <div className="flex items-center justify-center gap-1.5" onClick={e => e.stopPropagation()}>
                           <button
+                            type="button"
                             onClick={() => analyseTx(tx.id)}
+                            aria-label={`Re-run risk engine on transaction ${tx.id}`}
                             className="p-1 rounded bg-[#171715] border border-[#403B32] text-[#D8C5A3] hover:bg-[#2B2822] hover:border-[#D8C5A3]"
                             title="Re-run Risk Engine"
                           >
-                            <RefreshCw className="w-3.5 h-3.5" />
+                            <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
                           </button>
                           <button
+                            type="button"
                             onClick={() => setSelectedTransaction(tx)}
+                            aria-label={`View full investigative details for transaction ${tx.id}`}
                             className="p-1 rounded bg-[#171715] border border-[#403B32] text-[#AAA395] hover:text-[#F1EBDD] hover:bg-[#2B2822]"
                             title="View Full Investigative Details"
                           >
-                            <Eye className="w-3.5 h-3.5" />
+                            <Eye className="w-3.5 h-3.5" aria-hidden="true" />
                           </button>
                         </div>
                       </td>
@@ -364,6 +381,8 @@ export default function TransactionsPage() {
             </div>
             <div className="flex items-center gap-2">
               <button
+                type="button"
+                aria-label="Go to previous page"
                 disabled={currentPage <= 1}
                 onClick={() => setCurrentPage(p => p - 1)}
                 className="px-2.5 py-1 rounded bg-[#211F1B] border border-[#403B32] disabled:opacity-40 hover:text-[#F1EBDD]"
@@ -372,6 +391,8 @@ export default function TransactionsPage() {
               </button>
               <span>Page {currentPage} of {totalPages || 1}</span>
               <button
+                type="button"
+                aria-label="Go to next page"
                 disabled={currentPage >= totalPages}
                 onClick={() => setCurrentPage(p => p + 1)}
                 className="px-2.5 py-1 rounded bg-[#211F1B] border border-[#403B32] disabled:opacity-40 hover:text-[#F1EBDD]"
